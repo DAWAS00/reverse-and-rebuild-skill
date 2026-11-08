@@ -83,6 +83,10 @@ Short version; the full recipe is in [references/rust-gui-split-and-test.md](ref
 - **One surface per module**; split before about 1,000 lines. A move-only refactor is its own commit with no behaviour change.
 - **Test layers:** pure unit tests in core/canvas; headless `egui_kittest` tests through the accessibility tree; a usability audit over every screen at 800×500, 1280×800 and 1440×900; a journey test; then the real window.
 
+## Designing the UI
+
+Priorities (accessibility, interaction, style, layout, type and colour, motion, forms, navigation), tokens, states, keyboard, themes and the three window sizes: [references/desktop-ui-design.md](references/desktop-ui-design.md). It adapts the `ui-ux-pro-max` rules to a native desktop editor.
+
 ## Subagents
 
 Use them for work that does not need your context and can run beside you. Never for the decision-making. Prompts to copy: [references/subagents.md](references/subagents.md).
