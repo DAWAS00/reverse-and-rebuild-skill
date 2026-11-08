@@ -1,0 +1,10 @@
+{
+  "name": "reverse-and-rebuild-skill",
+  "version": "1.0.0",
+  "description": "Claude Code skill: study a program, plan with Codex, rebuild it as a Rust/egui app in reviewed slices, then test and push.",
+  "bin": { "reverse-and-rebuild-skill": "bin/install.js" },
+  "files": ["bin", "skills", "README.md", "LICENSE"],
+  "keywords": ["claude-code", "skill", "codex", "rust", "egui", "reverse-engineering"],
+  "license": "MIT",
+  "engines": { "node": ">=18" }
+}
