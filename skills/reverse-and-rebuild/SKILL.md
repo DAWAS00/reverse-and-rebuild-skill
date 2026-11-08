@@ -13,7 +13,7 @@ This is the method that produced Diagram Studio (a Rust/egui diagram editor mode
 
 1. Ask what the target is and what to build. If the user says only "my app", ask which one.
 2. Write the question checklist (phase 1) and say which questions need a hand test.
-3. Check the tools: `codex --version` (install with `npm install -g @openai/codex`), `gh auth status`, `cargo --version`. Report what is missing; do not install unrelated software.
+3. Check the tools and ask about reviewers: `codex --version` (install with `npm install -g @openai/codex`), `gh auth status`, `cargo --version`. Report what is missing; do not install unrelated software. If Codex is missing, ask for another AI agent to review and test; if the user has none, use read-only subagents as the second reviewer (see the loop guide).
 4. Confirm the working folder is the real project folder, not a `.claude` copy or a worktree.
 5. Do the phases in order. After each, say what is now true and what is not verified, then continue unless a decision belongs to the user.
 6. Close with the hand test of the real app and an honest report.
@@ -101,7 +101,7 @@ Use them for work that does not need your context and can run beside you. Never 
 
 Exact commands, the pre-push checklist, the PR body shape and fixes for problems seen: [references/github-flow.md](references/github-flow.md).
 
-Nothing is pushed before **every** gate passes. Order: gates green, Codex `VERDICT: APPROVED`, real-window check done, commit (checking the commit is the approved diff), push, open the PR, check the PR comments, merge, pull `main`, then start the next slice from fresh `main`. Ask the user once whether merging may happen without asking each time; stop and report when Codex does not approve in 5 rounds, a gate cannot pass, a design question is not settled by the ADR, or the real window fails.
+Nothing is pushed before **every** gate passes. Order: gates green, Codex `VERDICT: APPROVED`, real-window check done, commit (checking the commit is the approved diff), push, open the PR, check the PR comments, merge, pull `main`, then start the next slice from fresh `main`. Ask the user once per project whether merging may happen without asking each time (default: push and open the PR, the user merges); stop and report when Codex does not approve in 5 rounds, a gate cannot pass, a design question is not settled by the ADR, or the real window fails.
 
 ## Rules that came from mistakes
 

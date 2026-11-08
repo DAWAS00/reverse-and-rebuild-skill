@@ -14,6 +14,16 @@ codex --version
 - Skills the loop uses: `/codex-review:plan` (review a plan) and `/codex-review:code` (review the current diff). Both iterate up to 5 rounds until Codex ends with `VERDICT: APPROVED`.
 - **Reasoning effort:** the plugin leaves out `-m`, so add `-c model_reasoning_effort="xhigh"` to every `codex exec`, or set `model_reasoning_effort = "xhigh"` in `~/.codex/config.toml`.
 
+## No Codex? Use another agent, or a subagent
+
+Codex is the preferred second reviewer, not a hard requirement. At the start of the project, check `codex --version` and ask the user:
+
+> Do you have another AI agent or CLI (Codex, Gemini CLI, another model) that can review and test the code? If so, tell me how to call it.
+
+- **Yes:** use that agent in the same role as Codex: read-only, one plan review before each slice, one code review before each push, up to 5 rounds, ending in an explicit approve/revise verdict. Record how it is called in the slice plan.
+- **No (the user may skip it):** replace the second reviewer with **read-only Claude subagents** that use a different checklist from the author: one for maintainability and one for UI rules (prompts in [subagents.md](subagents.md)). They must approve before the push, exactly as Codex would. Say plainly in the PR body that the review was by subagents, not a second model family, because that catches fewer shared blind spots.
+- The other gates (tests first, fmt, clippy, test, doc, maintainability, real-window check) never depend on the reviewer and are never skipped.
+
 ## Calling Codex directly
 
 ```bash
